@@ -26,14 +26,14 @@ function Header({ inputVal, setInputVal,setLocation,suggestions,setSuggestions }
           <h1 className="text-4xl font-bold">WeatherWise</h1>
         </div>
         <div className="flex flex-col w-full justify-center items-center pb-10">
-          <div className="flex justify-center">
-            <div className="flex items-center justify-between px-1">
-              <div className="w-full">
+          <div className="flex justify-center w-full">
+            <div className="flex items-center justify-between px-1 w-full">
+              <div className="w-full flex justify-center items-center">
                 <input
                   value={inputVal}
                   onChange={(e) => handleInputChange(e)}
                   type="text"
-                  className="rounded-lg bg-gray-200 px-6 py-2 placeholder:text-black/100 w-96 border-2 border-orange-300"
+                  className="rounded-lg bg-gray-200 px-6 py-2 placeholder:text-black/100 w-1/2 border-2 border-orange-300"
                   placeholder="Enter your city name ☃️"
                 />
               </div>
@@ -41,7 +41,7 @@ function Header({ inputVal, setInputVal,setLocation,suggestions,setSuggestions }
           </div>
           {/* City suggestions dropdown while typing city name */}
           {suggestions.length > 0 && (
-            <ul className="bg-white border border-gray-300 rounded-lg w-96 max-h-48 overflow-y-auto z-10 shadow-lg">
+            <ul className="bg-white border border-gray-300 rounded-lg w-1/2 max-h-48 overflow-y-auto z-10 shadow-lg">
               {suggestions.map((suggestion, index) => (
                 <li
                   key={index}
