@@ -1,34 +1,63 @@
-function Header({ inputVal, setInputVal,setLocation }) {
+function Header({ inputVal, setInputVal,setLocation,suggestions,setSuggestions }) {
   function handleInputChange(e) {
     setInputVal(e.target.value);
   }
 
-  function handleSearch(){
-    // console.log(inputVal);
-    setInputVal("");
-    setLocation(inputVal);
+  function handleSuggestionClick(city) {
+    // console.log(city);
+    setInputVal(city.name);
+    setLocation({
+      lat : city.latitude,
+      lng : city.longitude
+    });
+    setTimeout(()=>{
+      setSuggestions([]);
+    },1000);
+    setInputVal(""); 
   }
 
   return (
     <header>
-      <div className="flex gap-5 justify-center items-center">
-        <div>
-          <img className="w-20" src="../src/assets/logo.png" alt="logo" />
+      <div className="mx-auto">
+        <div className="flex justify-center items-center">
+          <div>
+            <img className="w-20" src="../src/assets/logo.png" alt="logo" />
+          </div>
+          <h1 className="text-4xl font-bold">WeatherWise</h1>
         </div>
-        <h1 className="text-4xl font-bold">WeatherWise</h1>
-      </div>
-
-      <div className="flex gap-5 justify-center items-center pt-5 pb-14">
-        <input
-          value={inputVal}
-          onChange={(e) => handleInputChange(e)}
-          className="rounded-lg bg-gray-200 px-6 py-2 placeholder:text-black/100 w-96 border-2 border-orange-300"
-          type="text"
-          placeholder="Enter your city"
-        />
-        <button className="rounded-lg bg-orange-200 px-6 py-[10px] text-black" onClick={handleSearch}>
-          Search
-        </button>
+        <div className="flex flex-col w-full justify-center items-center pb-10">
+          <div className="flex justify-center">
+            <div className="flex items-center justify-between px-1">
+              <div className="w-full">
+                <input
+                  value={inputVal}
+                  onChange={(e) => handleInputChange(e)}
+                  type="text"
+                  className="rounded-lg bg-gray-200 px-6 py-2 placeholder:text-black/100 w-96 border-2 border-orange-300"
+                  placeholder="Enter your city name ☃️"
+                />
+              </div>
+            </div>
+          </div>
+          {/* City suggestions dropdown while typing city name */}
+          {suggestions.length > 0 && (
+            <ul className="bg-white border border-gray-300 rounded-lg w-96 max-h-48 overflow-y-auto z-10 shadow-lg">
+              {suggestions.map((suggestion, index) => (
+                <li
+                  key={index}
+                  className=" p-4 hover:bg-gray-100 cursor-pointer border-t border-gray-200"
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  <span className="font-bold">{suggestion.name}</span>,{" "}
+                  <span className="text-gray-600">
+                    {suggestion.state ? `${suggestion.state}, ` : ""}
+                    {suggestion.country}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </header>
   );

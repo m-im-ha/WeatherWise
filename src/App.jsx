@@ -4,30 +4,22 @@ import axios from "axios";
 
 function App() {
   const [inputVal, setInputVal] = useState("");
-  const [location, setLocation] = useState("");
-  // console.log(inputVal)
+  const [location, setLocation] = useState({lat : null, lng : null});
+  const [suggestions, setSuggestions] = useState([]);
 
+
+  // Fetch weather data when the user selects a city
   useEffect(() => {
     async function fetchWeather() {
-      if (!location) return;
+      if (!location.lat || !location.lng) return;
       try {
-        const geoResponse = await axios.get(
-          `https://geocoding-api.open-meteo.com/v1/search?name=${location}`
-        );
-        const {
-          country,
-          country_code,
-          id,
-          latitude: lat,
-          longitude: lng,
-          name: cityName,
-          timezone,
-        } = geoResponse.data.results[0];
-        console.log(country, country_code, id, lat, lng, cityName);
+        // Fetch weather data using the coordinates of the selected city
         const weatherResponse = await axios.get(
-          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,apparent_temperature,is_day,precipitation,rain,showers,wind_speed_10m,wind_direction_10m&daily=temperature_2m_max,temperature_2m_min&timezone=${timezone}`
+          `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lng}&current_weather=true&timezone=auto`
         );
-        console.log(weatherResponse);
+        
+        const temperature = weatherResponse.data.current_weather.temperature;
+        console.log(temperature+"°C");
       } catch (error) {
         console.error(error);
       }
@@ -35,12 +27,33 @@ function App() {
     fetchWeather();
   }, [location]);
 
+   // Fetch city suggestions as the user types
+   useEffect(() => {
+    async function fetchSuggestions() {
+      if (!inputVal) {
+        setSuggestions([]);
+        return;
+      }
+      try {
+        const response = await axios.get(
+          `https://geocoding-api.open-meteo.com/v1/search?name=${inputVal}`
+        );
+        setSuggestions(response.data.results || []);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchSuggestions();
+  }, [inputVal]);
+
   return (
     <div>
       <Header
         inputVal={inputVal}
         setInputVal={setInputVal}
         setLocation={setLocation}
+        suggestions={suggestions}
+        setSuggestions={setSuggestions}
       />
     </div>
   );
