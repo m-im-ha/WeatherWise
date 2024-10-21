@@ -6,7 +6,13 @@ import Loader from "./components/Loader";
 
 function App() {
   const [inputVal, setInputVal] = useState("");
-  const [location, setLocation] = useState({ lat: null, lng: null });
+  const [location, setLocation] = useState({
+    lat: null,
+    lng: null,
+    countryName: "",
+    cityName: "",
+    countryCode: "",
+  });
   const [suggestions, setSuggestions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [weatherData, setWeatherData] = useState({});
@@ -20,7 +26,7 @@ function App() {
         setIsLoading(true);
         // Fetch weather data using the coordinates of the selected city
         const weatherResponse = await axios.get(
-          `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lng}&current_weather=true&timezone=auto`
+          `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lng}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min&timezone=GMT`
         );
         setWeatherData(weatherResponse.data);
 
@@ -45,6 +51,7 @@ function App() {
         const response = await axios.get(
           `https://geocoding-api.open-meteo.com/v1/search?name=${inputVal}`
         );
+        // console.log(response.data.results)
         setSuggestions(response.data.results || []);
       } catch (error) {
         console.error(error);
@@ -62,7 +69,11 @@ function App() {
         suggestions={suggestions}
         setSuggestions={setSuggestions}
       />
-      {isLoading ? <Loader /> : <WeatherCard weatherData={weatherData} />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <WeatherCard weatherData={weatherData} location={location} />
+      )}
     </div>
   );
 }

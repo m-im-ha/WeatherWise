@@ -8,7 +8,10 @@ function Header({ inputVal, setInputVal,setLocation,suggestions,setSuggestions }
     setInputVal(city.name);
     setLocation({
       lat : city.latitude,
-      lng : city.longitude
+      lng : city.longitude,
+      countryName:city.country,
+      cityName:city.name,
+      countryCode : city.country_code
     });
     setTimeout(()=>{
       setSuggestions([]);

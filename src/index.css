@@ -9,7 +9,7 @@ body {
   padding: 0;
 }
 
-body {
+.bodyBg {
   background: linear-gradient(
     50deg,
     hsl(0deg 36% 96%) 0%,
