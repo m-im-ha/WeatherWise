@@ -1050,6 +1050,10 @@ html {
   }
 }
 
+.visible {
+  visibility: visible;
+}
+
 .z-10 {
   z-index: 10;
 }

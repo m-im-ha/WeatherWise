@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import axios from "axios";
+import WeatherCard from "./components/WeatherCard";
+import Loader from "./components/Loader";
 
 function App() {
   const [inputVal, setInputVal] = useState("");
   const [location, setLocation] = useState({lat : null, lng : null});
   const [suggestions, setSuggestions] = useState([]);
+  const [isLoading,setIsLoading] = useState(false);
 
 
   // Fetch weather data when the user selects a city
@@ -13,6 +16,7 @@ function App() {
     async function fetchWeather() {
       if (!location.lat || !location.lng) return;
       try {
+        setIsLoading(true);
         // Fetch weather data using the coordinates of the selected city
         const weatherResponse = await axios.get(
           `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lng}&current_weather=true&timezone=auto`
@@ -20,6 +24,7 @@ function App() {
         
         const temperature = weatherResponse.data.current_weather.temperature;
         console.log(temperature+"°C");
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -55,6 +60,7 @@ function App() {
         suggestions={suggestions}
         setSuggestions={setSuggestions}
       />
+      {isLoading ? <Loader/> : <WeatherCard/>}
     </div>
   );
 }
