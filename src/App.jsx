@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import axios from "axios";
 import WeatherCard from "./components/WeatherCard";
 import Loader from "./components/Loader";
+import DailyWeather from "./components/DailyWeather";
 
 function App() {
   const [inputVal, setInputVal] = useState("");
@@ -71,6 +72,7 @@ function App() {
       ) : (
         <WeatherCard weatherData={weatherData} location={location} />
       )}
+      {weatherData?.daily && <DailyWeather weatherData={weatherData}/>}
     </div>
   );
 }
