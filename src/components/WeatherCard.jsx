@@ -1,3 +1,5 @@
+import { getWeatherIcon } from "../utils/helper";
+
 function WeatherCard({ weatherData, location }) {
   console.log(weatherData);
   // console.log(location);
@@ -5,8 +7,11 @@ function WeatherCard({ weatherData, location }) {
   if (!weatherData?.current) {
     return;
   }
-  const { temperature_2m: temp, apparent_temperature: feelsLike } =
-    weatherData.current;
+  const {
+    temperature_2m: temp,
+    apparent_temperature: feelsLike,
+    weather_code: wmoCode,
+  } = weatherData.current;
   const { countryName, cityName } = location;
   const dailyMaxTemp = weatherData.daily.temperature_2m_max[0];
   const dailyMinTemp = weatherData.daily.temperature_2m_min[0];
@@ -14,7 +19,11 @@ function WeatherCard({ weatherData, location }) {
     weatherData.daily.precipitation_probability_max[0];
 
   return (
-    <div className="border-2 border-t-white text-center w-1/2 mx-auto rounded-lg p-4 shadow-xl">
+    <div className="flex justify-between border-2 border-t-white w-1/2 mx-auto rounded-lg p-4 shadow-xl">
+      {/* left side of the weather card */}
+      <div>
+        <div className="text-7xl">{getWeatherIcon(wmoCode)}</div>
+      </div>
       {/* right side of the weather card */}
       <div className="flex flex-col justify-end gap-12">
         {/* right 1st */}
