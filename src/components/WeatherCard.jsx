@@ -11,6 +11,9 @@ function WeatherCard({ weatherData, location }) {
     temperature_2m: temp,
     apparent_temperature: feelsLike,
     weather_code: wmoCode,
+    relative_humidity_2m: humidity,
+    surface_pressure: pressure,
+    wind_speed_10m: wind,
   } = weatherData.current;
   const { countryName, cityName } = location;
   const dailyMaxTemp = weatherData.daily.temperature_2m_max[0];
@@ -19,13 +22,32 @@ function WeatherCard({ weatherData, location }) {
     weatherData.daily.precipitation_probability_max[0];
 
   return (
-    <div className="flex justify-between border-2 border-t-white w-1/2 mx-auto rounded-lg p-4 shadow-xl">
+    <div className="flex justify-between border-2 w-1/2 mx-auto rounded-lg p-8 shadow-xl">
       {/* left side of the weather card */}
       <div>
-        <div className="text-7xl">{getWeatherIcon(wmoCode)}</div>
+        <div className="text-7xl mb-16">{getWeatherIcon(wmoCode)}</div>
+        <div>
+          <span className="flex gap-3 items-center">
+            <img className="w-6" src="./src/assets/humidity.png" alt="" />
+            <h5 className="text-lg font-semibold">Humidity</h5>
+            <h5 className="text-lg font-semibold">{humidity}%</h5>
+          </span>
+          <hr className="w-40 border border-t-slate-300 my-1" />
+          <span className="flex gap-3 items-center">
+            <img className="w-6" src="./src/assets/wind.png" alt="" />
+            <h5 className="text-lg font-semibold">Wind</h5>
+            <h5 className="text-lg font-semibold ml-8">{wind}km/h</h5>
+          </span>
+          <hr className="w-48 border border-t-slate-300 my-1" />
+          <span className="flex gap-3 items-center">
+            <img className="w-6" src="./src/assets/pressure.png" alt="" />
+            <h5 className="text-lg font-semibold">Pressure</h5>
+            <h5 className="text-lg font-semibold ml-2">{pressure}hPa</h5>
+          </span>
+        </div>
       </div>
       {/* right side of the weather card */}
-      <div className="flex flex-col justify-end gap-12">
+      <div className="flex flex-col justify-end gap-8">
         {/* right 1st */}
         <div className="flex justify-end">
           <div>

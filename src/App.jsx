@@ -26,7 +26,7 @@ function App() {
         setIsLoading(true);
         // Fetch weather data using the coordinates of the selected city
         const weatherResponse = await axios.get(
-          `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lng}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=GMT`
+          `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lng}&current=temperature_2m,relative_humidity_2m,surface_pressure,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=GMT`
         );
         setWeatherData(weatherResponse.data);
         setIsLoading(false);

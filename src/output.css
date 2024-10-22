@@ -1162,6 +1162,11 @@ html {
   margin-bottom: 0.5rem;
 }
 
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .ml-2 {
   margin-left: 0.5rem;
 }
@@ -1170,20 +1175,36 @@ html {
   margin-left: 1rem;
 }
 
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
+.ml-6 {
+  margin-left: 1.5rem;
+}
+
+.ml-8 {
+  margin-left: 2rem;
+}
+
 .flex {
   display: flex;
 }
 
 .h-6 {
   height: 1.5rem;
-}
-
-.h-2 {
-  height: 0.5rem;
-}
-
-.h-28 {
-  height: 7rem;
 }
 
 .max-h-48 {
@@ -1214,12 +1235,20 @@ html {
   width: 100%;
 }
 
-.w-2 {
-  width: 0.5rem;
+.w-8 {
+  width: 2rem;
 }
 
-.w-28 {
-  width: 7rem;
+.w-6 {
+  width: 1.5rem;
+}
+
+.w-44 {
+  width: 11rem;
+}
+
+.w-48 {
+  width: 12rem;
 }
 
 .cursor-pointer {
@@ -1252,6 +1281,22 @@ html {
 
 .gap-12 {
   gap: 3rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
 }
 
 .overflow-y-auto {
@@ -1312,6 +1357,10 @@ html {
   padding: 1rem;
 }
 
+.p-8 {
+  padding: 2rem;
+}
+
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -1331,12 +1380,12 @@ html {
   padding-bottom: 2.5rem;
 }
 
-.text-center {
-  text-align: center;
-}
-
 .text-right {
   text-align: right;
+}
+
+.text-end {
+  text-align: end;
 }
 
 .text-2xl {
@@ -1349,6 +1398,11 @@ html {
   line-height: 2.5rem;
 }
 
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -1357,11 +1411,6 @@ html {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-7xl {
-  font-size: 4.5rem;
-  line-height: 1;
 }
 
 .font-bold {
