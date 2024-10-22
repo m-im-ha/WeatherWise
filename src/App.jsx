@@ -59,7 +59,7 @@ function App() {
   }, [inputVal]);
 
   return (
-    <div>
+    <div className="bodyBg min-h-screen">
       <Header
         inputVal={inputVal}
         setInputVal={setInputVal}
