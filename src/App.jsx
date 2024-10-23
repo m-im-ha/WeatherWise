@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "./components/Header";
-import axios from "axios";
 import WeatherCard from "./components/WeatherCard";
 import Loader from "./components/Loader";
 import DailyWeather from "./components/DailyWeather";
 import Footer from "./components/Footer";
+
+import useWeather from "./hooks/useWeather";
+import useCitySuggestions from "./hooks/useCitySuggestions";
 
 function App() {
   const [inputVal, setInputVal] = useState("");
@@ -15,48 +17,9 @@ function App() {
     cityName: "",
     countryCode: "",
   });
-  const [suggestions, setSuggestions] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [weatherData, setWeatherData] = useState({});
 
-  // Fetch weather data when the user selects a city
-  useEffect(() => {
-    async function fetchWeather() {
-      if (!location.lat || !location.lng) return;
-      try {
-        setIsLoading(true);
-        // Fetch weather data using the coordinates of the selected city
-        const weatherResponse = await axios.get(
-          `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lng}&current=temperature_2m,relative_humidity_2m,surface_pressure,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&daily=weather_code,wind_speed_10m_max,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=GMT`
-        );
-        setWeatherData(weatherResponse.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchWeather();
-  }, [location]);
-
-  // Fetch city suggestions as the user types
-  useEffect(() => {
-    async function fetchSuggestions() {
-      if (!inputVal) {
-        setSuggestions([]);
-        return;
-      }
-      try {
-        const response = await axios.get(
-          `https://geocoding-api.open-meteo.com/v1/search?name=${inputVal}`
-        );
-        // console.log(response.data.results)
-        setSuggestions(response.data.results || []);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchSuggestions();
-  }, [inputVal]);
+  const { weatherData, isLoading } = useWeather(location);
+  const { suggestions, setSuggestions } = useCitySuggestions(inputVal);
 
   return (
     <div className="bodyBg min-h-screen">
@@ -72,8 +35,8 @@ function App() {
       ) : (
         <WeatherCard weatherData={weatherData} location={location} />
       )}
-      {weatherData?.daily && <DailyWeather weatherData={weatherData}/>}
-      <Footer/>
+      {weatherData?.daily && <DailyWeather weatherData={weatherData} />}
+      <Footer />
     </div>
   );
 }
