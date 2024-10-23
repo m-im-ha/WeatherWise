@@ -1,7 +1,7 @@
 import { formatDay, getWeatherIcon } from "../utils/helper";
 
 function DailyWeather({ weatherData }) {
-  // console.log(weatherData)
+  
   const dailyRain = weatherData.daily.precipitation_probability_max;
   const dailyMaxTemp = weatherData.daily.temperature_2m_max;
   const dailyMinTemp = weatherData.daily.temperature_2m_min;
@@ -52,9 +52,6 @@ function DailyWeather({ weatherData }) {
                 <p className="text-md font-semibold ml-1">Wind</p>
                 <p className="text-md font-semibold">{dailyWindSpeed[i]}km/h</p>
               </div>
-              {/* <p className="text-md">Min: {dailyMinTemp[i]}℃</p> */}
-              {/* <p className="text-md">Rain: {dailyRain[i]}%</p> */}
-              {/* <p className="text-md">Wind: {dailyWindSpeed[i]}km/h</p> */}
             </div>
           </div>
         </div>

@@ -18,7 +18,6 @@ function App() {
   const [suggestions, setSuggestions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [weatherData, setWeatherData] = useState({});
-  // console.log(weatherData)
 
   // Fetch weather data when the user selects a city
   useEffect(() => {

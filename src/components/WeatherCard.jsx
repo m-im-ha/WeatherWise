@@ -1,8 +1,6 @@
 import { getWeatherIcon } from "../utils/helper";
 
 function WeatherCard({ weatherData, location }) {
-  console.log(weatherData);
-  // console.log(location);
 
   if (!weatherData?.current) {
     return;
@@ -10,7 +8,6 @@ function WeatherCard({ weatherData, location }) {
   const {
     temperature_2m: temp,
     apparent_temperature: feelsLike,
-    // weather_code: wmoCode,
     relative_humidity_2m: humidity,
     surface_pressure: pressure,
     wind_speed_10m: wind,

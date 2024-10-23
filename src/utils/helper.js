@@ -21,7 +21,3 @@ export function getWeatherIcon(wmoCode) {
   if (!arr) return "NOT FOUND";
   return icons.get(arr);
 }
-
-export function convertToFahrenheit(celsius) {
-  return (celsius * (9 / 5) + 32).toFixed(1);
-}
