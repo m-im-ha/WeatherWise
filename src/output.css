@@ -764,20 +764,6 @@ html {
   justify-content: center;
 }
 
-@media (hover:hover) {
-  .table tr.hover:hover,
-  .table tr.hover:nth-child(even):hover {
-    --tw-bg-opacity: 1;
-    background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
-  }
-
-  .table-zebra tr.hover:hover,
-  .table-zebra tr.hover:nth-child(even):hover {
-    --tw-bg-opacity: 1;
-    background-color: var(--fallback-b3,oklch(var(--b3)/var(--tw-bg-opacity)));
-  }
-}
-
 .card {
   position: relative;
   display: flex;
@@ -1197,6 +1183,10 @@ html {
   margin-bottom: 0.5rem;
 }
 
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .mb-16 {
   margin-bottom: 4rem;
 }
@@ -1213,32 +1203,20 @@ html {
   margin-left: 2rem;
 }
 
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mb-20 {
-  margin-bottom: 5rem;
 }
 
 .flex {
   display: flex;
 }
 
-.hidden {
-  display: none;
+.h-24 {
+  height: 6rem;
 }
 
 .h-6 {
   height: 1.5rem;
-}
-
-.h-24 {
-  height: 6rem;
 }
 
 .h-full {
@@ -1323,6 +1301,10 @@ html {
 
 .gap-3 {
   gap: 0.75rem;
+}
+
+.gap-5 {
+  gap: 1.25rem;
 }
 
 .gap-8 {
@@ -1418,8 +1400,12 @@ html {
   padding-bottom: 5rem;
 }
 
-.pt-8 {
-  padding-top: 2rem;
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
+.pb-12 {
+  padding-bottom: 3rem;
 }
 
 .text-center {
@@ -1428,6 +1414,10 @@ html {
 
 .text-right {
   text-align: right;
+}
+
+.font-serif {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .text-2xl {
@@ -1463,6 +1453,11 @@ html {
   font-weight: 600;
 }
 
+.text-blue-900 {
+  --tw-text-opacity: 1;
+  color: rgb(30 58 138 / var(--tw-text-opacity));
+}
+
 .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
@@ -1494,10 +1489,6 @@ html {
   transition-property: opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-}
-
-.duration-300 {
-  transition-duration: 300ms;
 }
 
 .duration-500 {
@@ -1536,8 +1527,8 @@ body {
   color: rgb(0 0 0 / 1);
 }
 
-.hover\:hidden:hover {
-  display: none;
+.hover\:h-32:hover {
+  height: 8rem;
 }
 
 .hover\:w-40:hover {
@@ -1555,26 +1546,10 @@ body {
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
-.hover\:opacity-100:hover {
-  opacity: 1;
-}
-
-.group:hover .group-hover\:visible {
-  visibility: visible;
-}
-
-.group:hover .group-hover\:block {
-  display: block;
-}
-
 .group:hover .group-hover\:hidden {
   display: none;
 }
 
 .group:hover .group-hover\:opacity-100 {
   opacity: 1;
-}
-
-.group:hover .group-hover\:opacity-0 {
-  opacity: 0;
 }
