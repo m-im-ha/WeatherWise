@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300..1000&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +11,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: "Recursive", sans-serif;
 }
 
 .bodyBg {

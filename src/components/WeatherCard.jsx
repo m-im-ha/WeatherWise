@@ -10,7 +10,7 @@ function WeatherCard({ weatherData, location }) {
   const {
     temperature_2m: temp,
     apparent_temperature: feelsLike,
-    weather_code: wmoCode,
+    // weather_code: wmoCode,
     relative_humidity_2m: humidity,
     surface_pressure: pressure,
     wind_speed_10m: wind,
@@ -20,12 +20,17 @@ function WeatherCard({ weatherData, location }) {
   const dailyMinTemp = weatherData.daily.temperature_2m_min[0];
   const dailyPrecipitationProbability =
     weatherData.daily.precipitation_probability_max[0];
+  const dailyWeatherCode = weatherData.daily.weather_code[0];
 
   return (
     <div className="flex justify-between border-2 w-1/2 mx-auto rounded-lg p-8 shadow-xl">
       {/* left side of the weather card */}
       <div>
-        <div className="text-7xl mb-16">{getWeatherIcon(wmoCode)}</div>
+        <div className="w-full">
+          <div className="text-8xl mb-16">
+            {getWeatherIcon(dailyWeatherCode)}
+          </div>
+        </div>
         <div>
           <span className="flex gap-3 items-center">
             <img className="w-6" src="./src/assets/humidity.png" alt="" />
@@ -36,13 +41,13 @@ function WeatherCard({ weatherData, location }) {
           <span className="flex gap-3 items-center">
             <img className="w-6" src="./src/assets/wind.png" alt="" />
             <h5 className="text-lg font-semibold">Wind</h5>
-            <h5 className="text-lg font-semibold ml-8">{wind}km/h</h5>
+            <h5 className="text-lg font-semibold ml-9">{wind}km/h</h5>
           </span>
-          <hr className="w-48 border border-t-slate-300 my-1" />
+          <hr className="w-56 border border-t-slate-300 my-1" />
           <span className="flex gap-3 items-center">
             <img className="w-6" src="./src/assets/pressure.png" alt="" />
             <h5 className="text-lg font-semibold">Pressure</h5>
-            <h5 className="text-lg font-semibold ml-2">{pressure}hPa</h5>
+            <h5 className="text-lg font-semibold ml-1">{pressure}hPa</h5>
           </span>
         </div>
       </div>
@@ -66,7 +71,7 @@ function WeatherCard({ weatherData, location }) {
         <div>
           {/* current temp */}
           <h2 className="text-4xl font-bold text-right">{temp} ℃</h2>
-          <div className="flex justify-end my-2">
+          <div className="flex justify-end my-1">
             <hr className="w-40 border border-t-slate-300" />
           </div>
           {/* max & min temp */}
@@ -89,8 +94,8 @@ function WeatherCard({ weatherData, location }) {
         {/* right 3rd */}
         <div className="flex flex-col">
           <h3 className="text-right font-semibold">Feels like {feelsLike}℃</h3>
-          <div className="flex justify-end my-2">
-            <hr className="w-40 border border-t-slate-300" />
+          <div className="flex justify-end my-1">
+            <hr className="w-44 border border-t-slate-300" />
           </div>
           <h3 className="text-right font-semibold">
             Chances of rain {dailyPrecipitationProbability}% ☔
