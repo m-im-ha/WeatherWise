@@ -27,7 +27,7 @@ function DailyWeather({ weatherData }) {
               <div className="flex gap-2">
                 <img
                   className="w-3 h-4"
-                  src="./src/assets/arrow-up.png"
+                  src="/assets/arrow-up.png"
                   alt=""
                 />
                 <p className="text-md font-semibold ml-2">Max</p>
@@ -36,7 +36,7 @@ function DailyWeather({ weatherData }) {
               <div className="flex gap-2">
                 <img
                   className="w-3 h-4 mt-1"
-                  src="./src/assets/arrow-down.png"
+                  src="/assets/arrow-down.png"
                   alt=""
                 />
                 <p className="text-md font-semibold ml-2">Min</p>
@@ -48,7 +48,7 @@ function DailyWeather({ weatherData }) {
                 <p className="text-md font-semibold ml-1">{dailyRain[i]}%</p>
               </div>
               <div className="flex gap-2">
-                <img className="w-4 h-4 mt-1" src="./src/assets/wind.png" alt="" />
+                <img className="w-4 h-4 mt-1" src="/assets/wind.png" alt="" />
                 <p className="text-md font-semibold ml-1">Wind</p>
                 <p className="text-md font-semibold">{dailyWindSpeed[i]}km/h</p>
               </div>

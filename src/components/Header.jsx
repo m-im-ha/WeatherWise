@@ -31,7 +31,7 @@ function Header({
       <div className="mx-auto">
         <div className="flex justify-center items-center">
           <div>
-            <img className="w-20" src="../src/assets/logo.png" alt="logo" />
+            <img className="w-20" src="/assets/logo.png" alt="logo" />
           </div>
           <h1 className="text-4xl font-bold">WeatherWise</h1>
         </div>
